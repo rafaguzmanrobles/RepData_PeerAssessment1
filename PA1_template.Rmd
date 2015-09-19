@@ -94,3 +94,15 @@ ggplot(totalStepsPerDay,aes(x = steps)) +
 ```{r}
 ##Create a new factor variable in the dataset with two levels – “weekday” and “weekend”
 dataimputed$weekday <- as.factor(ifelse(weekdays(dataimputed$date) %in% c("sabado","domingo"), "Weekend", "Weekday"))
+avgStepsWeekdayWeekend <- aggregate(x = dataimputed$steps ,   
+    by = list(dataimputed$interval,dataimputed$weekday), FUN = mean ,na.rm=TRUE)
+names(avgStepsWeekdayWeekend ) <- c("interval","weekday","steps")
+
+##Make a panel plot containing a time series plot 
+ggplot(avgStepsWeekdayWeekend,aes(interval,steps)) +
+        ggtitle("Plot of Average of Steps by Interval") +
+        facet_grid(. ~ weekday) +
+        geom_line(size = 1)
+
+```
+![Sample panel plot](instructions_fig/hist4.png) 
