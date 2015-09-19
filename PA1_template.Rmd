@@ -90,4 +90,7 @@ ggplot(totalStepsPerDay,aes(x = steps)) +
 
 ![Sample panel plot](instructions_fig/hist3.png) 
 
-## Are there differences in activity patterns between weekdays and weekends?
+## Are there differences in activity patterns between weekdays and weekends? In spanish in my computer
+```{r}
+##Create a new factor variable in the dataset with two levels – “weekday” and “weekend”
+dataimputed$weekday <- as.factor(ifelse(weekdays(dataimputed$date) %in% c("sabado","domingo"), "Weekend", "Weekday"))
