@@ -7,10 +7,30 @@ output:
 
 
 ## Loading and preprocessing the data
+```{r loading}
+##load data by using read.csv
+data <- read.csv("activity.csv")
 
-
+##convert date into Date format
+data$date <- as.Date(data$date)
+```
 
 ## What is mean total number of steps taken per day?
+```{r steps, ECHO=TRUE}
+##1. Calculate the total number of steps taken per day
+stepsPerDay <- aggregate(x = data$steps , by = list(data$date), FUN = sum ,na.rm=TRUE)
+names(stepsPerDay) <- c("date", "steps")
+
+##2. If you do not understand the difference between a histogram and a barplot, research the difference between them. Make a histogram of the total number of steps taken each day
+hist <- qplot(stepsPerDay$steps, 
+      geom="histogram",
+      main= "Steps per day",
+      xlab="Steps",
+      ylab="Count")
+
+hist
+```      
+
 
 
 
