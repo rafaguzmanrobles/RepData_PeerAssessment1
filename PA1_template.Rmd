@@ -31,12 +31,35 @@ hist <- qplot(stepsPerDay$steps,
 
 ```      
 ![Sample panel plot](instructions_fig/hist1.png) 
+```{r mean, ECHO=TRUE}
+Calculate and report the mean and median of the total number of steps taken per day
+mean(stepsPerDay$steps , na.rm = TRUE)
+```
+[1] 9354.23
 
+
+```{r median, ECHO=TRUE}
+median(stepsPerDay$steps , na.rm = TRUE)
+```
+[1] 10395
 
 
 ## What is the average daily activity pattern?
 
+```{r dailyactivity, ECHO=TRUE}
+##Make a time series plot (i.e. type = "l") of the 5-minute interval (x-axis) and the average number of steps taken, averaged across all days (y-axis)
 
+avgStepsPerDay <- aggregate(x = data$steps , by = list(data$interval), FUN = mean ,na.rm=TRUE)
+names(avgStepsPerDay) <- c("interval", "steps")
+
+
+ggplot(avgStepsPerDay,aes(interval,steps)) +
+        ggtitle("Time series plot of 5-minute interval and the average number of steps taken") +
+        geom_line()
+
+```
+
+![Sample panel plot](instructions_fig/hist2.png) 
 
 ## Imputing missing values
 
