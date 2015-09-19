@@ -28,9 +28,9 @@ hist <- qplot(stepsPerDay$steps,
       xlab="Steps",
       ylab="Count")
 
-hist
-```      
 
+```      
+![Sample panel plot](instructions_fig/hist1.png) 
 
 
 
